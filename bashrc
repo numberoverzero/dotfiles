@@ -17,7 +17,7 @@ shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=10000
-HISTFILESIZE=20000
+HISTFILESIZE=10000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -78,7 +78,17 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-export PATH=$PATH:/usr/local/bin
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:~/npm/bin"
+export PATH="$PATH:$HOME/.rvm/bin"
+
+export RUST_SRC_PATH="$HOME/rust/src"
+function cdp () {
+    cd "$(python -c "import os.path as _, ${1}; \
+            print(_.dirname(_.realpath(${1}.__file__[:-1])))"
+        )"
+}
 
 # =================================
 # Prompt Customization
