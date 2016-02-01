@@ -74,10 +74,6 @@ fi
 # Don't let virtualenv mess with the custom prompt
 export VIRTUAL_ENV_DISABLE_PROMPT='1'
 
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:~/npm/bin"
@@ -90,9 +86,11 @@ function cdp () {
         )"
 }
 
-# =================================
+# ==================================================================
 # Prompt Customization
-# =================================
+# Assumes the Solarized Colorscheme for Gnome Terminal is installed:
+# https://github.com/Anthony25/gnome-terminal-colors-solarized
+# ==================================================================
 export EXIT_STATUS=0
 export PROMPT_COMMAND=__prompt_command
 
@@ -104,8 +102,8 @@ function __prompt_command() {
   local colReset="\[\e[0m\]"
   local colRed="\[\033[0;31m\]"
   local colGreen="\[\033[0;32m\]"
-  local colLight="\[\033[0;37m\]"
-  local colDark="\[\033[1;30m\]"
+  local colLight="\[\033[1;37m\]"
+  local colBlue="\[\033[0;34m\]"
 
   PS1=""
 
@@ -116,7 +114,7 @@ function __prompt_command() {
 
   # date/time
   PS1+="${colLight}["
-  PS1+="${colDark}\D{%F} \D{%H:%M:%S}"
+  PS1+="${colBlue}\D{%F} \D{%H:%M:%S}"
   PS1+="${colLight}]${colReset} "
 
   # cwd
@@ -136,3 +134,7 @@ function __prompt_command() {
 # Always prepend PROMPT_COMMAND with __capture_exit so that it doesn't
 # get lost by other commands (like pyenv)
 export PROMPT_COMMAND="__capture_exit;$PROMPT_COMMAND"
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
