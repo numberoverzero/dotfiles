@@ -91,6 +91,13 @@ function cdp () {
 # Assumes the Solarized Colorscheme for Gnome Terminal is installed:
 # https://github.com/Anthony25/gnome-terminal-colors-solarized
 # ==================================================================
+
+# ls -l color fix
+# To install:
+# wget –no-check-certificate https://raw.github.com/seebi/dircolors-solarized/master/dircolors.ansi-dark
+# mv dircolors.ansi-dark ~/.dircolors
+eval `dircolors ~/.dircolors`
+
 export EXIT_STATUS=0
 export PROMPT_COMMAND=__prompt_command
 
