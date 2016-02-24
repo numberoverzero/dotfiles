@@ -95,8 +95,8 @@ function cdp () {
 # ls -l color fix
 # To install:
 # wget –no-check-certificate https://raw.github.com/seebi/dircolors-solarized/master/dircolors.ansi-dark
-# mv dircolors.ansi-dark ~/.dircolors
-eval `dircolors ~/.dircolors`
+# mv dircolors.ansi-dark $HOME/.dircolors
+eval `dircolors $HOME/.dircolors`
 
 export EXIT_STATUS=0
 export PROMPT_COMMAND=__prompt_command
