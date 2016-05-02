@@ -74,6 +74,7 @@ fi
 # Don't let virtualenv mess with the custom prompt
 export VIRTUAL_ENV_DISABLE_PROMPT='1'
 
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:~/npm/bin"
