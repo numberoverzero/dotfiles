@@ -74,13 +74,20 @@ fi
 # Don't let virtualenv mess with the custom prompt
 export VIRTUAL_ENV_DISABLE_PROMPT='1'
 
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/"
+export M2_HOME="/usr/share/apache-maven-3.3.9/"
+export M2="$M2_HOME/bin"
+export M3_HOME="$M2_HOME"
+export M3="$M3"
+export RUST_SRC_PATH="$HOME/rust/src"
+
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:~/npm/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$M2"
 
-export RUST_SRC_PATH="$HOME/rust/src"
 function cdp () {
     cd "$(python -c "import os.path as _, ${1}; \
             print(_.dirname(_.realpath(${1}.__file__[:-1])))"
@@ -137,12 +144,16 @@ function __prompt_command() {
 
   # $/#
   PS1+="\$${colReset} "
-}
 
-# Always prepend PROMPT_COMMAND with __capture_exit so that it doesn't
-# get lost by other commands (like pyenv)
-export PROMPT_COMMAND="__capture_exit;$PROMPT_COMMAND"
+  # Append $pwd/bin to PATH
+  [ -z "$ORIGINAL_PATH" ] && ORIGINAL_PATH=$PATH;
+  PATH=$ORIGINAL_PATH:$(pwd)/bin
+}
 
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# Always prepend PROMPT_COMMAND with __capture_exit so that it doesn't
+# get lost by other commands (like pyenv)
+export PROMPT_COMMAND="__capture_exit;$PROMPT_COMMAND"
