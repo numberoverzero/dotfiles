@@ -1,0 +1,5 @@
+[user]
+	email = numberoverzero@gmail.com
+	name = numberoverzero
+[core]
+	editor = code --wait
