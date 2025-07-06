@@ -25,8 +25,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -37,3 +35,7 @@ fi
 # For a full list of active aliases, run `alias`.
 alias gs="git status"
 alias fs="fossil status"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
